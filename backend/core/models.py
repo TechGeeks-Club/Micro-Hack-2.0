@@ -33,7 +33,7 @@ def get_image_path(instance, filename):
     return '/'.join(['profile_pics',instance.username, filename])
 
 class User(AbstractBaseUser,PermissionsMixin):
-    username             = models.CharField(primary_key=True,max_length=50,blank=True)
+    username             = models.CharField(unique=True,max_length=50,blank=True)
     
     email                = models.EmailField(unique=True,null=True,max_length=254)
     phone                = models.CharField(max_length=15,blank=True,null=True)
