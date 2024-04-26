@@ -8,16 +8,16 @@ from django.utils.html import mark_safe
 
 # User
 class UserManager(BaseUserManager):
-    def create_user(self ,email,password):
+    def create_user(self ,username,password):
         
-        user = self.model(email=email)
+        user = self.model(username=username)
       
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self ,password,email):
-        user = self.model(email=email)
+    def create_superuser(self ,password,username):
+        user = self.model(username=username)
         #to input the first_name and last_name
         user.is_admin         = True
         user.is_staff         = True
