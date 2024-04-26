@@ -31,9 +31,11 @@ class GetTaks(RetrieveAPIView):
 #get my tasks
 @api_view(["GET"])
 def my_tasks(request,event_id):
-    user = request.user
+    user = request.user.groups.all()
+    
     #get group targets
-    tasks = Taks.objects.filter(assigned_to=user)
+    
+    tasks = Taks.objects.filter(assign_to_group_to=user)
     sz = TaKsSerializers(tasks,many=True)
     if sz.is_valid:
         return JsonResponse({'tasks':sz.data})
