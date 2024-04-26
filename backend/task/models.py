@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 # import group model
 from django.contrib.auth.models import Group
+# import events
+from event.models import Event
 # Create your models here.
 
 class Status(models.Model):
@@ -27,7 +29,7 @@ class Taks(models.Model):
     end_date         = models.DateTimeField(null=True, blank=True)
     status           = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True, blank=True)
     priority         = models.ForeignKey(Priority, on_delete=models.SET_NULL, null=True, blank=True)
-    Event            = models.ForeignKey('event.Event', on_delete=models.CASCADE)
+    event            = models.ForeignKey(Event, on_delete=models.CASCADE,null=True,blank=True)
     # ? assign task to multiple users
     assign_to_user   = models.ManyToManyField('core.User', related_name='assign_to_user', blank=True)
     assign_to_group  = models.ManyToManyField('auth.Group', related_name='assign_to_group', blank=True)
