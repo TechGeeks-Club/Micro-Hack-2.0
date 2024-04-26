@@ -37,8 +37,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_soft.apps.AdminSoftDashboardConfig',
+    
+    'admin_material.apps.AdminMaterialDashboardConfig',
+    # 'admin_soft.apps.AdminSoftDashboardConfig',
     'django.contrib.admin',
+    'corsheaders',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -53,8 +56,19 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'event.apps.EventConfig',
 ]
-
+# CORS_ALLOWED_ORIGINS = [
+#     "*"
+# ]
+CORS_ALLOW_HEADERS = (
+    "accept",
+    "authorization",
+    "content-type",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+)
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,7 +77,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'src.urls'
 
 TEMPLATES = [

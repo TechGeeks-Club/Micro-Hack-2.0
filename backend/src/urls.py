@@ -7,14 +7,15 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', include('admin_soft.urls')),
+    path('', include('admin_material.urls')),
+    # path('', include('admin_soft.urls')),
     path("chat/", include("realtime.urls")),
     path('admin/', admin.site.urls),
     path('api/event/', include("event.urls")),
     path('api/task/', include("task.urls")),
     path('auth/users/', include("core.urls")), #myprofile data
-    path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # auth endpoints:
