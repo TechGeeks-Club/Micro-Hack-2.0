@@ -1,12 +1,12 @@
 import React from "react";
 import  HeroSection  from "../myComponents/HeroSection.tsx";
-import NewHeroSection from '../myComponents/NewHeroSection.tsx'
+import WorkWithUs from "@/myComponents/workWithUs.tsx";
 
 export default function Home() {
   return (
     <div>
       <HeroSection />
-      <NewHeroSection></NewHeroSection>
+      <WorkWithUs />
     </div>
   );
 }
