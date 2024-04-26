@@ -5,6 +5,7 @@
 __pycache__/
 local_settings.py
 db.sqlite3
+*migrations*
 
 # React
 /node_modules/
@@ -43,3 +44,7 @@ db.sqlite3
 /.env.development.local
 /.env.test.local
 /.env.production.local
+
+
+# static files
+backend/static/

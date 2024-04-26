@@ -4,8 +4,8 @@
   "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "/home/aziz/Code/alger_hackathone/alger-hackathon/alger-hackathon/tailwind.config.js",
-    "css": "/home/aziz/Code/alger_hackathone/alger-hackathon/alger-hackathon/src/index.css",
+    "config": "/home/mohammedaouamri/DEV/Micro-Hack-2.0/frontend/alger-hackathon/tailwind.config.js",
+    "css": "/home/mohammedaouamri/DEV/Micro-Hack-2.0/frontend/alger-hackathon/src/index.css",
     "baseColor": "slate",
     "cssVariables": true,
     "prefix": ""
