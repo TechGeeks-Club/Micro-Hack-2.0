@@ -30,4 +30,3 @@ class CommentSerializers(serializers.ModelSerializer):
         read_only_fields = ['created_at']
 
 
-    
