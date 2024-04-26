@@ -29,7 +29,7 @@ class Taks(models.Model):
     # ? assign task to multiple users
     assign_to_user   = models.ManyToManyField('core.User', related_name='assign_to_user', blank=True)
     assign_to_group  = models.ManyToManyField('auth.Group', related_name='assign_to_group', blank=True)
-    # ? assign task to group
+
 
     def __str__(self):
         return self.title
