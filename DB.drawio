@@ -13,7 +13,7 @@
                 <mxCell id="73RRo5E287MixQ1JRngf-2" value="PK" style="shape=partialRectangle;connectable=0;fillColor=#dae8fc;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Helvetica;strokeColor=#6c8ebf;" parent="73RRo5E287MixQ1JRngf-1" vertex="1">
                     <mxGeometry width="30" height="30" as="geometry">
                         <mxRectangle width="30" height="30" as="alternateBounds"/>
-                    </mxGeometry>
+                    </mxGeometry>  
                 </mxCell>
                 <mxCell id="73RRo5E287MixQ1JRngf-3" value="Unique ID" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Helvetica;" parent="73RRo5E287MixQ1JRngf-1" vertex="1">
                     <mxGeometry x="30" width="150" height="30" as="geometry">

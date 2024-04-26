@@ -1,20 +1,73 @@
-import React from "react";
-import Logo from "../assets/react.svg"
+import { useEffect, useState } from "react";
+// import "./NewHeroSection.css";
 
-export default function NewHeroSection() {
-  return (
-    <div className="flex items-center justify-center w-[100%] h-[600px] ">
-      <div className="flex items-center justify-between w-[800px] h-[400px] bg-gradient-to-r from-bluenormal via-bluelight to-bluenormal rounded-md p-[20px]">
-        <div className="flex items-center justify-start font-bold w-[350px]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quam
-          nulla dolor? Unde similique, dolorum recusandae, accusamus magnam
-          quasi optio quibusdam velit blanditiis libero repellat ea architecto
-          commodi facilis cumque.
+
+
+
+interface Coord {
+  latitude:number, 
+  longitude:number, 
+  accuracy:number, 
+}
+function NewHeroSection() {
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+  const [WOW,setWOW] = useState<Coord | undefined  >(undefined); 
+  const [BRUH,setBRUH] = useState<undefined | string>(undefined); 
+  function success(pos:any) {
+    var crd = pos.coords;
+    console.log("Your current position is:");
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+    setWOW(pos.coords); 
+  }
+
+  function errors(err:any) {
+    setBRUH(`ERROR(${err.code}): ${err.message}`);
+  }
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then(function (result) {
+          console.log(result);
+          if (result.state === "granted") {
+            //If granted then you can directly call your function here
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else if (result.state === "prompt") {
+            //If prompt then the user will be asked to give permission
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+          } else if (result.state === "denied") {
+            navigator.geolocation.getCurrentPosition(success, errors, options);
+            //If denied then you have to show instructions to enable location
+          }
+          setBRUH(result.state)
+        });
+    } else {
+      setBRUH("Geolocation is not supported by this browser.")
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  return <div >
+          {WOW ? (
+            
+        <div>
+          <h1>Latitude: {WOW.latitude}</h1>
+          <h1>Longitude: {WOW.longitude}</h1>
         </div>
-        <img src={Logo} className="w-[300px] h-[300px]" />
+      ) : (
+        <h1>{BRUH}</h1>
+      )}
+
       
      
-      </div>
-    </div>
-  );
+  </div>;
 }
+
+export default NewHeroSection;
