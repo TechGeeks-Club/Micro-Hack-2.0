@@ -35,3 +35,18 @@ It is important to follow this branching convention to ensure a smooth and organ
     ```bash 
     python manage.py runsever
     ```
+
+
+
+
+# ***NOTE*** : TO fill up the data base inter your  data in `init_data.json` and run 
+
+
+```sh
+python manage.py shell
+```
+
+```py 
+from django.core.management import call_command
+call_command('loaddata', 'init_data.json', verbosity=1)
+```
