@@ -5,6 +5,7 @@
 __pycache__/
 local_settings.py
 db.sqlite3
+*migrations*
 
 # React
 /node_modules/
