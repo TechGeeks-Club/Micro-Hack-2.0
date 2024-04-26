@@ -35,13 +35,13 @@ def get_image_path(instance, filename):
 class User(AbstractBaseUser,PermissionsMixin):
     username             = models.CharField(unique=True,max_length=50)
     
-    email                = models.EmailField(unique=True,null=True,max_length=254)
+    email                = models.EmailField(unique=True,null=True,max_length=254,blank=True)
     phone                = models.CharField(max_length=15,blank=True,null=True)
     
     profile_pic          = models.ImageField(upload_to='profile_pics/',blank=True,null=True)
     
-    first_name           = models.CharField(max_length=150)
-    last_name            = models.CharField(max_length=150)
+    first_name           = models.CharField(max_length=150,null=True,blank=True)
+    last_name            = models.CharField(max_length=150,null=True,blank=True)
 
     join_date            = models.DateTimeField(blank=True,null=True,default=timezone.now)
     birthday             = models.DateField(blank=True,null=True)
@@ -51,16 +51,17 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_admin             = models.BooleanField(default=False)
     is_staff             = models.BooleanField(default=False)
     
-    groups               = models.ManyToManyField(Group, related_name='api_users')
+    groups               = models.ManyToManyField(Group, related_name='api_users',blank=True)
     team_staff           = models.ManyToManyField(Group, related_name='team_staff', blank=True) # just temporary to avoid migration issues
     
-    user_permissions     = models.ManyToManyField(Permission, related_name='api_user_permissions')    
+    user_permissions     = models.ManyToManyField(Permission, related_name='api_user_permissions',blank=True)    
     
     objects = UserManager()
     
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS =[  ]
+    REQUIRED_FIELDS =[ username ]
     
     class Meta:
         verbose_name = ("User")
         verbose_name_plural = ("Users")
+        
