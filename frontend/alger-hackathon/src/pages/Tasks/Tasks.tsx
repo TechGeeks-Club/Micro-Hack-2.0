@@ -1,17 +1,24 @@
+import * as React from "react";
+
 import AppBar from "@/myComponents/AppBar";
 import "./Tasks.css";
 import { CiSearch } from "react-icons/ci";
 import ToDo from "@/myComponents/ToDo";
 import { useState } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 export default function Tasks() {
+  const [current, setCurrent] = useState("tasks");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const [current, setCurrent] = useState('tasks');
-
-  const handleChange = (e: any) =>{
+  const handleChange = (e: any) => {
     setCurrent(e.value);
-  }
-
+  };
 
   return (
     <>
