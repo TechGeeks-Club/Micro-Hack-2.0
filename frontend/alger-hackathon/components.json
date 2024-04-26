@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "/home/mohammedaouamri/DEV/Micro-Hack-2.0/frontend/alger-hackathon/tailwind.config.js",
+    "css": "/home/mohammedaouamri/DEV/Micro-Hack-2.0/frontend/alger-hackathon/src/index.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils"
+  }
+}
