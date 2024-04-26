@@ -1,25 +1,32 @@
 from rest_framework import serializers
-from .models import Taks, Comment, Priority, Status
+from .models import Status,Priority,Taks,Comment
 
-class StatusSerializer(serializers.ModelSerializer):
+ 
+
+class StatusSerializers(serializers.ModelSerializer):
     class Meta:
         model = Status
-        fields = '__all__'
+        fields = "__all__"
         
-class PrioritySerializer(serializers.ModelSerializer):
+
+class PrioritySerializers(serializers.ModelSerializer):
     class Meta:
         model = Priority
-        fields = '__all__'
+        fields = "__all__"
 
 
-class TaksSerializer(serializers.ModelSerializer):
+class TaKsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Taks
-        fields = '__all__'
-        
-class CommentSerializer(serializers.ModelSerializer):
+        fields = "__all__"
+        read_only_fields = ['created_at']
+
+
+
+class CommentSerializers(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = '__all__'
-        
+        fields = "__all__"
+        read_only_fields = ['created_at']
+
 

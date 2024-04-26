@@ -7,8 +7,8 @@ from django.contrib.auth.models import Group
 class Status(models.Model):
     name = models.CharField(max_length=25)
     value = models.IntegerField(default=0,unique=True)
-
     def __str__(self):
+
         return self.name
 
 class Priority(models.Model):
@@ -27,9 +27,9 @@ class Taks(models.Model):
     status           = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True, blank=True)
     priority         = models.ForeignKey(Priority, on_delete=models.SET_NULL, null=True, blank=True)
     # ? assign task to multiple users
-    assign_to_user   = models.ManyToManyField('core.User', related_name='task_assign_to', blank=True)
-    # ? assign task to group
-    assign_to_group  = models.ManyToManyField('auth.Group', null=True, blank=True)
+    assign_to_user   = models.ManyToManyField('core.User', related_name='assign_to_user', blank=True)
+    assign_to_group  = models.ManyToManyField('auth.Group', related_name='assign_to_group', blank=True)
+
 
     def __str__(self):
         return self.title

@@ -49,8 +49,10 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_admin             = models.BooleanField(default=False)
     is_staff             = models.BooleanField(default=False)
     
-    groups     = models.ManyToManyField(Group, related_name='api_users')
-    user_permissions = models.ManyToManyField(Permission, related_name='api_user_permissions')    
+    groups               = models.ManyToManyField(Group, related_name='api_users')
+    team_staff           = models.ManyToManyField(Group, related_name='team_staff', blank=True) # just temporary to avoid migration issues
+    
+    user_permissions     = models.ManyToManyField(Permission, related_name='api_user_permissions')    
     
     objects = UserManager()
     
