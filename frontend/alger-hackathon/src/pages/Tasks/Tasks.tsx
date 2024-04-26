@@ -1,10 +1,26 @@
+import * as React from "react";
+
 import AppBar from "@/myComponents/AppBar";
 import "./Tasks.css";
-// import React, { Component } from "react";
-import { CiSearch } from "react-icons/ci";
 
+import { CiSearch } from "react-icons/ci";
+import ToDo from "@/myComponents/ToDo";
+import { useState } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 export default function Tasks() {
+  const [current, setCurrent] = useState("tasks");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleChange = (e: any) => {
+    setCurrent(e.value);
+  };
+
   return (
     <>
       <div className="huge-container">
@@ -18,13 +34,18 @@ export default function Tasks() {
             Tasks Section
           </div>
         </header>
-
-        <div className="main-container">
+        <div className="w-[100%] h-[1px] bg-black opacity-10 mb-3"></div>
+        <div className="flex flex-col w-[100%] justify-center">
           <header className="main-header">
-            <span>All results - No filters</span>
+            <span className="ml-3">All results - No filters</span>
             <div className="search-space">
               <label htmlFor="task-search">
-                <input type="search" name="tasks-search" className="w-[100%] rounded-3xl" id="" />
+                <input
+                  type="search"
+                  name="tasks-search"
+                  className="w-[100%] rounded-3xl"
+                  id=""
+                />
               </label>
               <div className="icon-abs">
                 <div className="icon-container">
@@ -48,11 +69,15 @@ export default function Tasks() {
               </div>
             </div>
           </header>
-          
+          <div className="overflow-x-auto h-[280px] bg-lightbackground p-4 rounded-lg mt-3">
+            <ToDo />
+            <ToDo />
+            <ToDo />
+            <ToDo />
+          </div>
         </div>
-       
+        <AppBar />
       </div>
-       <AppBar />
     </>
   );
 }
