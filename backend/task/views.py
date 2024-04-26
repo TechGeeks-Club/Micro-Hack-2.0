@@ -34,8 +34,9 @@ def my_tasks(request,event_id):
     user = request.user.groups.all()
     
     #get group targets
-    tasks = Taks.objects.filter()
+    # tasks = Taks.objects.filter()
     tasks = Taks.objects.filter(event=event_id,assign_to_group__in=user)
+    print(tasks)
     sz = TaKsSerializers(tasks,many=True)
     if sz.is_valid:
         return JsonResponse({'tasks':sz.data})
