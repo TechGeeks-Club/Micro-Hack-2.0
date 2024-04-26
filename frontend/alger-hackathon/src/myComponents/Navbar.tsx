@@ -6,6 +6,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocation } from "react-router-dom";
 import Logo from "../assets/Logo.png"
 
+
 const navigation = [
   { name: "Product", to: "#" },
   { name: "Features", to: "#" },
@@ -18,6 +19,7 @@ export default function Navbar() {
   const pathname = location.pathname;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
 
   return (
     <div>
@@ -81,7 +83,7 @@ export default function Navbar() {
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  src={Logo}
                   alt=""
                 />
               </Link>
@@ -109,7 +111,7 @@ export default function Navbar() {
                 </div>
                 <div className="py-6">
                   <Link
-                    to="#"
+                    to="/login"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Log in
