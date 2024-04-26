@@ -21,7 +21,8 @@ class Priority(models.Model):
 class Taks(models.Model):
     title            = models.CharField(max_length=100)
     description      = models.TextField(null=True, blank=True)
-    created_at       = models.DateTimeField(default=timezone.now)
+    # time now treu
+    created_at       = models.DateTimeField(auto_now=True)
     created_by       = models.ForeignKey('core.User', on_delete=models.SET_NULL,null=True, blank=True)
     end_date         = models.DateTimeField(null=True, blank=True)
     status           = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True, blank=True)

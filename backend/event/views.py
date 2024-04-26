@@ -33,7 +33,7 @@ class ListEvents(ListAPIView):
     
 
 #Get single event
-class GetEvents(RetrieveAPIView):
+class GetEvents(RetrieveAPIView,UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializers
     # permission_classes manage  = [IsAuthenticated] #! diasbled for testing

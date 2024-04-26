@@ -5,6 +5,6 @@ from .views import ListEvents,GetEvents,my_events
 urlpatterns = [
     path("", ListEvents.as_view()),
     path("<int:pk>", GetEvents.as_view()),
-
-    path('a/',my_events),
+    path('my_events/',my_events),
+    
 ]

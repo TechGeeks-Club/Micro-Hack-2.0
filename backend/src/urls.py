@@ -9,7 +9,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("chat/", include("realtime.urls")),
     path('admin/', admin.site.urls),
-    path("api/event/", include("event.urls")),
+    path('api/event/', include("event.urls")),
+    path('api/task/', include("task.urls")),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
