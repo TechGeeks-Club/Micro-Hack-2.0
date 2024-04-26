@@ -16,8 +16,10 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    
     def create_superuser(self ,password,username):
         user = self.model(username=username)
+        
         #to input the first_name and last_name
         user.is_admin         = True
         user.is_staff         = True
@@ -31,9 +33,9 @@ def get_image_path(instance, filename):
     return '/'.join(['profile_pics',instance.username, filename])
 
 class User(AbstractBaseUser,PermissionsMixin):
-    username             = models.CharField(primary_key=True,max_length=50,blank=True)
+    username             = models.CharField(unique=True,max_length=50,blank=True)
     
-    email                = models.EmailField(unique=True,max_length=254)
+    email                = models.EmailField(unique=True,null=True,max_length=254)
     phone                = models.CharField(max_length=15,blank=True,null=True)
     
     profile_pic          = models.ImageField(upload_to='profile_pics/',blank=True,null=True)
