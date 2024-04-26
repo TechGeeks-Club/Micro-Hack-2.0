@@ -30,10 +30,10 @@ It is important to follow this branching convention to ensure a smooth and organ
     python manage.py loaddata src/init_data.json 
     ```
 
-3. run server :
+3. run server (for realtime conection ):
 
     ```bash 
-    python manage.py runsever
+    uvicorn src.asgi:application --host 0.0.0.0 --port 8000 --reload
     ```
 
 
