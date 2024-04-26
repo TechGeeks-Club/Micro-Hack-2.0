@@ -23,7 +23,6 @@
             "value": 3
         }
     },
-    
     {
         "model": "task.priority",
         "pk": 1,
