@@ -1,25 +1,37 @@
-import * as React from "react";
-
 import AppBar from "@/myComponents/AppBar";
 import "./Tasks.css";
-
 import { CiSearch } from "react-icons/ci";
 import ToDo from "@/myComponents/ToDo";
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { AuthContext } from "@/contexts/AuthContext";
+import { useContext } from "react";
+
 
 export default function Tasks() {
-  const [current, setCurrent] = useState("tasks");
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const { accessToken } = useContext(AuthContext);
 
-  const handleChange = (e: any) => {
-    setCurrent(e.value);
-  };
+  const [tasksData, setTasks] = useState<Task[]>([]);
+
+  const eventID = 1200;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/task/my_tasks/${eventID}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${accessToken}`,
+          },
+        });
+        setTasks(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchData();
+  }, [eventID]);
 
   return (
     <>
@@ -69,11 +81,8 @@ export default function Tasks() {
               </div>
             </div>
           </header>
-          <div className="overflow-x-auto h-[280px] bg-lightbackground p-4 rounded-lg mt-3">
-            <ToDo />
-            <ToDo />
-            <ToDo />
-            <ToDo />
+          <div className="overflow-x-auto h-[420px] bg-lightbackground p-4 rounded-lg mt-3">
+          
           </div>
         </div>
         <AppBar />

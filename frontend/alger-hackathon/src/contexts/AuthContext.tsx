@@ -40,9 +40,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return storedAccessToken ? storedAccessToken : null;
   });
 
-  const login = (username: string, password: string) => {
-    return axios
-      .post("http://192.168.43.80:8000/auth/token/login", {
+  const login = async (username: string, password: string) => {
+    return await axios
+      .post("https://pbc34zvg-8000.euw.devtunnels.ms/auth/token/login/", {
         username: username,
         password: password,
       })

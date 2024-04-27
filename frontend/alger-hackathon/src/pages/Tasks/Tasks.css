@@ -1,6 +1,7 @@
 .huge-container{
     width: 100%;
-    min-height: 400px;
+    min-height: 90vh;
+    margin-top: 60px;
     padding: 20px;
     display: flex;
     align-items: flex-start;

@@ -1,29 +1,35 @@
+import React, { useRef } from "react"; // Import React and useRef
 import { Link } from "react-router-dom";
 import Logo from "../assets/Logo.png";
-import { useState } from "react";
-import { AuthContext } from "@/contexts/AuthContext";
-import { useContext } from "react";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 export default function LogIn() {
-  const { login } = useContext(AuthContext);
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const handleLogin = async () => {
-    
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault(); // Prevent the default form submission behavior
     try {
-      const accessToken = await login(username, password);
-      console.log("Login result:", accessToken);
-      
+      const response = await axios.post("https://pbc34zvg-8000.euw.devtunnels.ms/auth/token/login/", {
+        username: usernameRef.current?.value,
+        password: passwordRef.current?.value,
+      });
+      console.log(response.data);
+      if (response.status === 200) {
+        return <Navigate to="/tasks" />;
+      }
+      // Handle successful login, e.g., redirect to dashboard
     } catch (error) {
-      // Handle errors if any
       console.error("Login error:", error);
+      // Handle login error, e.g., display error message to the user
     }
+
   };
 
   return (
     <div>
-      <div className="flex min-h-[100vh] flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
@@ -36,7 +42,7 @@ export default function LogIn() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label
                 htmlFor="userName"
@@ -48,10 +54,10 @@ export default function LogIn() {
                 <input
                   id="userName"
                   name="userName"
-                  onChange={(e) => setUserName(e.target.value)}
+                  ref={usernameRef}
                   type="text"
-                  placeholder="user name"
-                  autoComplete="user name"
+                  placeholder="Username"
+                  autoComplete="username"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -69,7 +75,7 @@ export default function LogIn() {
                 <div className="text-sm">
                   <Link
                     to="/reset-password"
-                    className="font-semibold text-bluenormal hover:text-bluelight"
+                    className="font-semibold text-blue-500 hover:text-blue-700"
                   >
                     Forgot password?
                   </Link>
@@ -80,9 +86,9 @@ export default function LogIn() {
                   id="password"
                   name="password"
                   type="password"
-                  placeholder="password"
+                  ref={passwordRef}
+                  placeholder="Password"
                   autoComplete="current-password"
-                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -91,9 +97,8 @@ export default function LogIn() {
 
             <div>
               <button
-                
-                onClick={handleLogin}
-                className="flex w-full justify-center rounded-md bg-bluenormal px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-bluelight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                type="submit"
+                className="w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Sign in
               </button>
@@ -104,7 +109,7 @@ export default function LogIn() {
             Not a member?{" "}
             <Link
               to="/signup"
-              className="font-semibold leading-6 text-bluenormal hover:text-bluelight"
+              className="font-semibold leading-6 text-blue-500 hover:text-blue-700"
             >
               Sign up
             </Link>

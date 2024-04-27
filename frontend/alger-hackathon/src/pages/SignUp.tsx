@@ -11,7 +11,7 @@ export default function SignUp() {
   const navigate = useNavigate();
   const { accessToken } = useContext(AuthContext);
 
-  const [firstName, setFirstName] = useState("");
+  const [username, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -22,14 +22,8 @@ export default function SignUp() {
   const handleFormSubmit = async () => {
     try {
       const response = await axios.post(
-        "https://pbc34zvg-8000.euw.devtunnels.ms/auth/users/create",
-        { firstName, lastName, password, email, phoneNumber, confirm },
-        {
-          headers: {
-            "Content-Type": "application/json", // Change content type to JSON
-            Authorization: `Token ${accessToken}`, // Include the token in the request headers
-          },
-        }
+        "https://pbc34zvg-8000.euw.devtunnels.ms/auth/users/",
+        { username, password }
       );
       console.log("User saved:", response.data);
       navigate("/login");
