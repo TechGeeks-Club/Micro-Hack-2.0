@@ -16,8 +16,6 @@ def my_profile(request):
     user = request.user
     sz = UserSerializers(user)
     if sz.is_valid:
-        print("aaaaaaaaaaa")
         return JsonResponse({'me':sz.data})
     # responce error
-    print("bbbbbbbbbbbbbbbbbb")
     return JsonResponse("error")
