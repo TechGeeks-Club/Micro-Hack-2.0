@@ -2,7 +2,7 @@
 
 
 ## Project Overview
-
+**note** frontend code in `frontend-dev` branch
 ### Purpose
 
 this project is our solution for the second problem of `Micro HAck` Hackathon , our solution aims to help teams , companies , organaisaitions and even scientific clubs in managing operations across different locations.
