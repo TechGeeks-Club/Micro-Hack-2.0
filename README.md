@@ -250,6 +250,6 @@ Now, you should have both the Django backend and React frontend running locally.
 - **Permissions Required**: User must be authenticated.
 - **Response**: JSON containing the profile data of the authenticated user.
 
-
-
+### figma
+[figma](https://www.figma.com/file/TUB5DnfT0inQLS3iQRvWlL?type=design)
 
