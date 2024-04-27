@@ -39,7 +39,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 INSTALLED_APPS = [
     
     'admin_material.apps.AdminMaterialDashboardConfig',
-    # 'admin_soft.apps.AdminSoftDashboardConfig',
     'django.contrib.admin',
     'corsheaders',
     'django.contrib.auth',
@@ -165,21 +164,9 @@ STATIC_ROOT = BASE_DIR / 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_RENDERER_CLASSES': [
-    #     'rest_framework.renderers.JSONRenderer',
-    # ],
-    
+  
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
     ],
-    
-    # permissions
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     # 'rest_framework.permissions.AllowAny',
-    #     'rest_framework.permissions.IsAuthenticated',
-    #     # 'rest_framework.permissions.IsAdminUser',
-                
-    # ],
    
 }

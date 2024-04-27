@@ -11,7 +11,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.settings')
 django_asgi_app = get_asgi_application()
 
 
-
+#? this conig will allow us to use both http and websocket
 application = ProtocolTypeRouter(
     {
         "http": django_asgi_app,
@@ -20,18 +20,3 @@ application = ProtocolTypeRouter(
         ),
     }
 )
-
-# # WebSocket ASGI application
-# websocket_asgi_app = ProtocolTypeRouter({
-#     'websocket': AuthMiddlewareStack(
-#         URLRouter(
-#             realtime.routing.websocket_urlpatterns
-#         )
-#     ),
-# })
-
-# # Combined ASGI application
-# application = ProtocolTypeRouter({
-#     'http': django_asgi_app,
-#     'websocket': websocket_asgi_app,
-# })

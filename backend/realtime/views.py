@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+# ! This is the view for the chat application (for testing purposes)
+
 def index(request):
     return render(request, "chat/index.html")
 

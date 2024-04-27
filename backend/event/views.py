@@ -1,46 +1,29 @@
-from django.shortcuts import render
-
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
-
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
-
-
-from django.http import HttpResponse, JsonResponse,response,HttpRequest
-# from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required, permission_required
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
-from django.shortcuts import get_object_or_404
-
-from rest_framework.authtoken.models import Token
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
-
-
+from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
 
 from .models import Event
-
-from django.contrib.auth.models import Group 
 from .serializers import EventSerializers
 
 
-# gett all events
-class ListEvents(ListAPIView):
+# ? get all events | create event
+class EventsCRView(ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializers
-    # permission_classes manage  = [IsAuthenticated] #! diasbled for testing
+    permission_classes  = [IsAuthenticated] 
     
 
-#Get single event
-class GetEvents(RetrieveAPIView,UpdateAPIView):
+# ? Read Update Delete for event
+class EventsRUDView(RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializers
-    # permission_classes manage  = [IsAuthenticated] #! diasbled for testing
+    permission_classes = [IsAuthenticated] 
 
 
+# ? this function will return all events that are targeted to the user
 @api_view(["GET"])
-def my_events(request):
+def get_user_events_view(request):
     user_group = request.user.groups.all()
     #get group targets
     Events = Event.objects.filter(targets__in=user_group)

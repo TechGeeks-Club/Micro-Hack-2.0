@@ -1,10 +1,9 @@
-from django.contrib import admin
-from django.urls import path,include
-from .views import ListEvents,GetEvents,my_events
+from django.urls import path
+from .views import EventsCRView,EventsRUDView,get_user_events_view
 
 urlpatterns = [
-    path("", ListEvents.as_view()),
-    path("<int:pk>", GetEvents.as_view()),
-    path('my_events/',my_events),
+    path("", EventsCRView.as_view()),
+    path("<int:pk>", EventsRUDView.as_view()),
+    path('my_events/',get_user_events_view),
     
 ]
