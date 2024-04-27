@@ -1,0 +1,53 @@
+[
+
+    
+    {
+        "model": "task.status",
+        "pk": 1,
+        "fields": {
+            "name": "TO DO",
+            "value": 1
+        }
+    },
+    {
+        "model": "task.status",
+        "pk": 2,
+        "fields": {
+            "name": "In Progress",
+            "value": 2
+        }
+    },
+    {
+        "model": "task.status",
+        "pk": 3,
+        "fields": {
+            "name": "Completed",
+            "value": 3
+        }
+    },
+    {
+        "model": "task.priority",
+        "pk": 1,
+        "fields": {
+            "name": "Low",
+            "value": 1
+        }
+    },
+    {
+        "model": "task.priority",
+        "pk": 2,
+        "fields": {
+            "name": "Medium",
+            "value": 2
+        }
+    },
+    {
+        "model": "task.priority",
+        "pk": 3,
+        "fields": {
+            "name": "High",
+            "value": 3
+        }
+    }
+
+]
